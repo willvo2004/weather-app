@@ -7,17 +7,25 @@ body {
 
 .main {
     position: relative;
-    background-image: url(images/wp2437939-ultrawide-wallpapers.png);
     background-size: cover;
     background-position: center;
     width: 100%;
     height: 100%;
 }
 
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
 .information-sqaure {
-    background: #9bcdfb;
+    background: rgb(155, 205, 251, 0.4);
     border-radius: 34px;
-    opacity: 0.4000000059604645;
+    box-shadow: 1px 20px 80px;
     width: 457px;
     height: 457px;
 }
@@ -26,4 +34,13 @@ body {
     position: absolute;
     left: 40%;
     top: 10%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    animation: fadeIn 1s ease-in-out;
+}
+
+.icon {
+    width: 10%;
+    height: 10%;
 }
