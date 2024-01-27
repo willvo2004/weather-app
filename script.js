@@ -8,19 +8,19 @@ const weatherPromise = currentWeather();
 const dailyForecast = document.querySelector('.information-sqaure');
 const background = document.querySelector('.main');
 
-let conditionPromise = weatherPromise.then(value => value.current.condition);
+const conditionPromise = weatherPromise.then(value => value.current.condition);
 let temperaturePromise = weatherPromise.then(value => temperaturePromise = value.current.temp_c);
 let cityNamePromise = weatherPromise.then(value => cityNamePromise = value.location.name);
-let dayOrNight = weatherPromise.then(value => value.current.is_day);
+const dayOrNight = weatherPromise.then(value => value.current.is_day);
 
 Promise.all([conditionPromise, temperaturePromise, cityNamePromise, dayOrNight])
     .then(([condition, temperature, city, timeOfDay]) => {
         if (timeOfDay == 0) {
-            background.style.backgroundImage = 'url(images/jason-blackeye-FzURx0rFhUk-unsplash.jpg)';      
+            background.style.backgroundImage = 'url(images/wp2437939-ultrawide-wallpapers.png)';      
         } else {
-            background.style.backgroundImage = 'url(images/69049064459__17BD0792-59D0-4A27-BAF7-04555825E165.jpg)'
+            background.style.backgroundImage = 'url(images/pexels-photo-3938169.png)'
         }
-        extractIcon(condition);
+        extractCondition(condition);
     });
 
 
@@ -28,10 +28,14 @@ function extractTemp(property) {
     const currentTemp = document.createElement('div')
 }
 
-function extractIcon(property) {
+function extractCondition(property) {
     const weatherIcon = document.createElement('img');
+    const weatherCondition = document.createElement('span');
+
     weatherIcon.setAttribute('class', 'icon');
 
     weatherIcon.src = property.icon;
+    weatherCondition.textContent = property.text;
     dailyForecast.appendChild(weatherIcon);
+    dailyForecast.appendChild(weatherCondition);
 }
